@@ -13,3 +13,8 @@ function countChar(string, character = 'B') {
   }
   return charCount;
 }
+
+console.log(countBs("BOB"));
+// → 2
+console.log(countChar("kakkerlak", "k"));
+// → 4
