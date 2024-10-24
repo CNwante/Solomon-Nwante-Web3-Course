@@ -1,4 +1,4 @@
-// Your Own Loop Implementation
+// Your own loop Implementation
 
 function loop(value, test, update, body) {
   let currentValue = value;
