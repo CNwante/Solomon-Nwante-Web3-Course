@@ -4,12 +4,14 @@
 import SCRIPTS from "./language-scripts";
 
 function dominantDirection(text) {
-  let counted = countBy(text, characterDirection)
+  let countedDirs = countBy(text, characterDirection)
     .filter(({name}) => name != "none");
 
-  if (counted.length == 0) return "No dominant direction found";
-  return counted.reduce((a, b) => a.count > b.count ? a : b).name;
+  if (countedDirs.length == 0) return "No dominant direction found";
+  let dominantDir = countedDirs.reduce((a, b) => a.count > b.count ? a : b);
+  return dominantDir.name;
 }
+
 
 console.log(dominantDirection("Hello!")); // → ltr
 console.log(dominantDirection("Hey, مساء الخير")); // → rtl
