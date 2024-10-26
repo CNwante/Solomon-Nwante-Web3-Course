@@ -8,7 +8,9 @@ function dominantDirection(text) {
     .filter(({name}) => name != "none");
 
   if (countedDirs.length == 0) return "No dominant direction found";
+
   let dominantDir = countedDirs.reduce((a, b) => a.count > b.count ? a : b);
+
   return dominantDir.name;
 }
 
