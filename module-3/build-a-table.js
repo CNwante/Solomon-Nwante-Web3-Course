@@ -42,6 +42,12 @@ document.addEventListener('DOMContentLoaded', () => {
         let td = document.createElement('td');
         td.textContent = x[y];
         tr.append(td);
+
+        if (y === 'height') {
+          console.log('Yeeeee')
+          td.setAttribute('class', 'number')
+          td.style.textAlign = 'right';
+        }
       }
       result.push(tr);
     }
