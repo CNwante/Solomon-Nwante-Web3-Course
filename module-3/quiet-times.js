@@ -39,3 +39,16 @@ function incrementHourlyActivity(hourlyCounts, timestamp, day) {
     hourlyCounts[hour]++;
   }
 }
+
+/**
+ * Important Note
+ * ==============
+ * To execute this code successfully and view the expected output,
+ * you need to run it in the Eloquent JavaScript Sandbox.
+ * This is because the `activityGraph` function (which converts activity hours
+ * to a histogram-like table)
+ * and the `textFile` function (which reads files) are defined in the sandbox.
+ *
+ * Additionally, the "camera_logs.txt" activity log file is located in the sandbox.
+ */
+
