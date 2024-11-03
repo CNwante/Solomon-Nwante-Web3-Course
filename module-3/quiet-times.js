@@ -1,31 +1,41 @@
+/**Quiet Times Exercise
+ =======================*/
 async function activityTable(day) {
-  // Read the list of log filenames from "camera_logs.txt"
-  const fileListContent = await textFile("camera_logs.txt");
-  const fileNames = fileListContent.split("\n");
-
+  const fileNames = await getFileNames();
   const hourlyActivityCounts = Array(24).fill(0);
 
-  // Loop through each log file
   for (let fileName of fileNames) {
-    const fileContent = await textFile(fileName);
-    const timestamps = fileContent.split("\n");
-
-    // Process each timestamp in the log file
-    for (let timestampString of timestamps) {
-      const timestamp = Number(timestampString.trim());
-      const date = new Date(timestamp);
-
-      // Check if the day of the week matches the specified day
-      if (date.getDay() === day) {
-        const hour = date.getHours();
-        hourlyActivityCounts[hour]++;
-      }
+    const timestamps = await getTimestampsFromFile(fileName);
+    for (let timestamp of timestamps) {
+      incrementHourlyActivity(hourlyActivityCounts, timestamp, day);
     }
   }
 
   return hourlyActivityCounts;
 }
 
-
+/**Example usage
+ ================*/
 activityTable(2)
   .then(table => console.log(activityGraph(table)));
+
+
+/**Helper functions
+ ====================*/
+async function getFileNames() {
+  const fileListContent = await textFile("camera_logs.txt");
+  return fileListContent.split("\n");
+}
+
+async function getTimestampsFromFile(fileName) {
+  const fileContent = await textFile(fileName);
+  return fileContent.split("\n").map(time => Number(time.trim()));
+}
+
+function incrementHourlyActivity(hourlyCounts, timestamp, day) {
+  const date = new Date(timestamp);
+  if (date.getDay() === day) {
+    const hour = date.getHours();
+    hourlyCounts[hour]++;
+  }
+}
