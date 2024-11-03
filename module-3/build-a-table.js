@@ -1,3 +1,6 @@
+/**Build a table exercise
+ ==========================*/
+
 document.addEventListener('DOMContentLoaded', () => {
   const MOUNTAINS = [
     { name: "Kilimanjaro", height: 5895, place: "Tanzania" },
@@ -9,53 +12,42 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: "Mont Blanc", height: 4808, place: "Italy/France" }
   ];
 
-  // Your code here
   const mountainsDiv = document.getElementById('mountains');
-  console.log(mountainsDiv);
-
   const tableElement = document.createElement('table');
-  console.log(tableElement);
-
-
   mountainsDiv.append(tableElement);
 
-  const firstData = MOUNTAINS[0]
-  console.log(firstData);
-
-  function createHeadings() {
-    let tr = document.createElement('tr');
-    for (let x in firstData) {
-      let th = document.createElement('th');
-      th.textContent = x;
-      tr.append(th);
-    }
-    return tr;
+  /**Function to create and append table headings
+   ===============================================*/
+  function createTableHeadings() {
+    const headerRow = document.createElement('tr');
+    Object.keys(MOUNTAINS[0]).map(key => {
+      const th = document.createElement('th');
+      th.textContent = key;
+      headerRow.append(th);
+    });
+    tableElement.append(headerRow);
   }
 
-  tableElement.append(createHeadings());
-
-  function createTableData() {
-    let result = [];
-    for (let x of MOUNTAINS) {
-      let tr = document.createElement('tr');
-      for (let y in x) {
-        let td = document.createElement('td');
-        td.textContent = x[y];
-        tr.append(td);
-
-        if (y === 'height') {
-          console.log('Yeeeee')
-          td.setAttribute('class', 'number')
-          td.style.textAlign = 'right';
+  /**Function to create and append table data rows
+   ================================================*/
+  function createTableRows() {
+    MOUNTAINS.map(mountain => {
+      const row = document.createElement('tr');
+      Object.keys(mountain).map(key => {
+        const cell = document.createElement('td');
+        cell.textContent = mountain[key];
+        if (key === 'height') {
+          cell.classList.add('number');
+          cell.style.textAlign = 'right';
         }
-      }
-      result.push(tr);
-    }
-
-    for (let z of result) {
-      tableElement.append(z);
-    }
+        row.append(cell);
+      });
+      tableElement.append(row);
+    });
   }
 
-  createTableData();
+  /**Build the table
+   ==================*/
+  createTableHeadings();
+  createTableRows();
 });
