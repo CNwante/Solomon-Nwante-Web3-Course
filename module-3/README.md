@@ -1,6 +1,6 @@
-# Module 2 Solutions
+# Module 3 Solutions
 
-This directory contains the Module 2 solution exercises, demonstrating specific techniques or methods to solve common programming challenges. Each solution is explained in detail, capturing the logic and approach behind it.
+This directory contains the Module 3 solution exercises, demonstrating specific techniques or methods to solve common programming challenges. Each solution is explained in detail, capturing the logic and approach behind it.
 
 ## Features
 
