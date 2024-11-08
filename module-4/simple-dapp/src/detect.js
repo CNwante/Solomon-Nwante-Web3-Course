@@ -1,5 +1,7 @@
 import detectEthereumProvider from "@metamask/detect-provider";
 
+/**Detect MetaMask
+ ==================*/
 async function setup() {
   const provider = await detectEthereumProvider();
 
