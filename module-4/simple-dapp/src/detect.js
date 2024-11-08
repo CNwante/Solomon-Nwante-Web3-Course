@@ -5,7 +5,7 @@ import detectEthereumProvider from "@metamask/detect-provider";
 async function setup() {
   const provider = await detectEthereumProvider();
 
-  if (provider && provider === window.ethereumm) {
+  if (provider && provider === window.ethereum) {
     console.log("MetaMask is available!");
     startApp(provider);
   } else {
@@ -15,7 +15,7 @@ async function setup() {
 
 function startApp(provider) {
   if (provider !== window.ethereum) {
-    console.error("Do you hav multiple wallets installed?");
+    console.error("Do you have multiple wallets installed?");
   }
 }
 
