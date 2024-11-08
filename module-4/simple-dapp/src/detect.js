@@ -20,3 +20,14 @@ function startApp(provider) {
 }
 
 window.addEventListener("load", setup);
+
+
+/**Detect a user's network
+  ==========================*/
+const chainId = await window.ethereum.request({method: "eth_chainId"});
+
+window.ethereum.on("chainChanged", handleChainChanged);
+
+function handleChainChanged(chainId) {
+  window.location.reload();
+}
