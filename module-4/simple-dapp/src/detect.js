@@ -31,3 +31,23 @@ window.ethereum.on("chainChanged", handleChainChanged);
 function handleChainChanged(chainId) {
   window.location.reload();
 }
+
+
+/** Access a user's accounts
+  ==========================*/
+const ethereumButton = document.querySelector(".enableEthereumButton");
+const showAccount = document.querySelector(".showAccount");
+
+async function getAccount() {
+  const accounts = await window.ethereum
+    .request({ method: "eth_requestAccounts" })
+    .catch((err) => {
+      if (err.code === 4001) {
+        console.log("Please connect to MetaMask");
+      } else {
+        console.error(err);
+      }
+    });
+  const account = accounts[0];
+  showAccount.innerHTML = account;
+}
